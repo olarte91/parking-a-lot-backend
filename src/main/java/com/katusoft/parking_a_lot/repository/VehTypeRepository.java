@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.katusoft.parking_a_lot.model.VehType;
 
-public interface VehTypeRepository extends JpaRepository<Long, VehType>{
+public interface VehTypeRepository extends JpaRepository<VehType, Long>{
 
 }
