@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -19,8 +20,8 @@ public class VehType {
     @Column(name = "description")
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "fare_id")
+    @ManyToOne
+    @JoinColumn(name = "fare")
     private Fare fare;
 
     @OneToOne(mappedBy = "vehType")
