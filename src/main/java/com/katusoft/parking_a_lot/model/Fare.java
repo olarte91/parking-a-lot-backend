@@ -25,8 +25,8 @@ public class Fare {
     @Column(name = "type")
     private FareType type;
 
-    @Column(name = "value_per_minute")
-    private Double valuePerMinute;
+    @Column(name = "value_per_hour")
+    private Double valuePerHour;
 
     @OneToMany(mappedBy = "fare", cascade = CascadeType.ALL)
     private List<VehType> vehicles = new ArrayList<>();
