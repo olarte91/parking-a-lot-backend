@@ -17,12 +17,6 @@ public class Vehicle {
     @Id
     private String licensePlate;
 
-    @Column( name = "brand")
-    private String brand;
-
-    @Column(name = "color")
-    private String color;
-
     @OneToOne
     @JoinColumn(name = "veh_type_id")
     private VehType vehType;

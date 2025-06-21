@@ -21,7 +21,7 @@ public class VehType {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "fare")
+    @JoinColumn(name = "fare_id")
     private Fare fare;
 
     @OneToOne(mappedBy = "vehType")

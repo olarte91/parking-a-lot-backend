@@ -1,5 +1,6 @@
 package com.katusoft.parking_a_lot.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -25,8 +26,7 @@ public class Fare {
     @Column(name = "value_per_minute")
     private Double valuePerMinute;
 
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-    private List<VehType> vehicles;
-
+    @OneToMany(mappedBy = "fare", cascade = CascadeType.ALL)
+    private List<VehType> vehicles = new ArrayList<>();
 
 }
