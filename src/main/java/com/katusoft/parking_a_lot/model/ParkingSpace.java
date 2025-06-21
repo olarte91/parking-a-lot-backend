@@ -22,15 +22,9 @@ public class ParkingSpace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code")
-    private String code;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private ParkingType type;
-
-    @Column(name = "location")
-    private String location;
 
     @Column(name = "status")
     private ParkingSpotStatus status;
