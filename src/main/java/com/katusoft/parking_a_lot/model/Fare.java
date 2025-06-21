@@ -3,6 +3,8 @@ package com.katusoft.parking_a_lot.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.katusoft.parking_a_lot.utils.FareType;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,8 +22,8 @@ public class Fare {
     @Column(name = "id_fare")
     private Long idFare;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "type")
+    private FareType type;
 
     @Column(name = "value_per_minute")
     private Double valuePerMinute;

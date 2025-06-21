@@ -6,4 +6,7 @@ import com.katusoft.parking_a_lot.model.Vehicle;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, String>{
 
+    public Boolean existsByLicensePlate(String licensePlate);
+    public Vehicle findByLicensePlate(String licensePlate);
+
 }

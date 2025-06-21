@@ -1,11 +1,9 @@
 package com.katusoft.parking_a_lot.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
+import com.katusoft.parking_a_lot.utils.RegisterStatus;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,11 +13,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "register")
+@Data
 public class Register {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +35,7 @@ public class Register {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private ParkingSpotStatus status;
+    private RegisterStatus status;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_license_plate")
@@ -50,7 +49,8 @@ public class Register {
     @JoinColumn(name = "departure_user_id")
     private AppUser userDeparture;
 
-    @OneToMany(mappedBy = "register", cascade = CascadeType.ALL)
-    private List<ParkingSpace> parkingSpaces;
+    @ManyToOne
+    @JoinColumn(name = "space_id")
+    private ParkingSpace parkingSpace;
 
 }

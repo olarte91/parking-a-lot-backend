@@ -1,5 +1,7 @@
 package com.katusoft.parking_a_lot.model;
 
+import com.katusoft.parking_a_lot.utils.ParkingType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +19,8 @@ public class VehType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehType;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "type")
+    private ParkingType type;
 
     @ManyToOne
     @JoinColumn(name = "fare_id")
