@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import com.katusoft.parking_a_lot.dto.RegisterRequestDTO;
 import com.katusoft.parking_a_lot.model.ParkingSpace;
 import com.katusoft.parking_a_lot.model.Register;
+import com.katusoft.parking_a_lot.model.VehType;
 import com.katusoft.parking_a_lot.model.Vehicle;
 import com.katusoft.parking_a_lot.repository.ParkingSpaceRepository;
 import com.katusoft.parking_a_lot.repository.RegisterRepository;
+import com.katusoft.parking_a_lot.repository.VehTypeRepository;
 import com.katusoft.parking_a_lot.repository.VehicleRepository;
 import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
 import com.katusoft.parking_a_lot.utils.ParkingType;
@@ -24,6 +26,7 @@ public class RegisterService {
     private final RegisterRepository registerRepository;
     private final VehicleRepository vehicleRepository;
     private final ParkingSpaceRepository parkingSpaceRepository;
+    private final VehTypeRepository vehTypeRepository;
 
     public List<Register> getAll() {
         List<Register> registerList = registerRepository.findAll();
@@ -38,6 +41,8 @@ public class RegisterService {
             newRegister.setVehicle(vehicle);
         } else {
             Vehicle vehicle = new Vehicle();
+            vehicle.setVehType(vehTypeRepository.findById(registerRequest.getVehicleType())
+            .orElseThrow(() -> new RuntimeException("Vehicle type not found")));
             vehicle.setLicensePlate(registerRequest.getLicensePlate());
             vehicleRepository.save(vehicle);
             newRegister.setVehicle(vehicle);

@@ -8,6 +8,8 @@ import com.katusoft.parking_a_lot.utils.FareType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +24,7 @@ public class Fare {
     @Column(name = "id_fare")
     private Long idFare;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private FareType type;
 
