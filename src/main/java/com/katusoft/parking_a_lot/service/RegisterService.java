@@ -1,13 +1,15 @@
 package com.katusoft.parking_a_lot.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.katusoft.parking_a_lot.dto.RegisterRequestDTO;
+import com.katusoft.parking_a_lot.dto.RegisterResponseDTO;
 import com.katusoft.parking_a_lot.model.ParkingSpace;
 import com.katusoft.parking_a_lot.model.Register;
-import com.katusoft.parking_a_lot.model.VehType;
 import com.katusoft.parking_a_lot.model.Vehicle;
 import com.katusoft.parking_a_lot.repository.ParkingSpaceRepository;
 import com.katusoft.parking_a_lot.repository.RegisterRepository;
@@ -28,9 +30,19 @@ public class RegisterService {
     private final ParkingSpaceRepository parkingSpaceRepository;
     private final VehTypeRepository vehTypeRepository;
 
-    public List<Register> getAll() {
-        List<Register> registerList = registerRepository.findAll();
-        return registerList;
+    public List<RegisterResponseDTO> getAll() {
+        List<Register> registers = registerRepository.findAll();
+        return registers.stream()
+        .map(register -> {
+            RegisterResponseDTO dto = new RegisterResponseDTO();
+            dto.setId(register.getId());
+            dto.setLicensePlate(register.getVehicle().getLicensePlate());
+            dto.setDateTimeEntrance(register.getDateTimeEntrance());
+            dto.setDateTimeDeparture(register.getDateTimeDeparture());
+            dto.setParkingSpaceNumber(register.getParkingSpace().getId());
+            dto.setTotalAmount(register.getAmount());
+            return dto;
+        }).collect(Collectors.toList());
     }
 
     public Register registerEntry(RegisterRequestDTO registerRequest) {

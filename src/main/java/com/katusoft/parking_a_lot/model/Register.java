@@ -2,6 +2,7 @@ package com.katusoft.parking_a_lot.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.katusoft.parking_a_lot.utils.RegisterStatus;
 
 import jakarta.persistence.Column;
