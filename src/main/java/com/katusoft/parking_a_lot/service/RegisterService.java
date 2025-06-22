@@ -37,6 +37,7 @@ public class RegisterService {
             RegisterResponseDTO dto = new RegisterResponseDTO();
             dto.setId(register.getId());
             dto.setLicensePlate(register.getVehicle().getLicensePlate());
+            dto.setVehicleType(register.getVehicle().getVehType().getType());
             dto.setDateTimeEntrance(register.getDateTimeEntrance());
             dto.setDateTimeDeparture(register.getDateTimeDeparture());
             dto.setParkingSpaceNumber(register.getParkingSpace().getId());
