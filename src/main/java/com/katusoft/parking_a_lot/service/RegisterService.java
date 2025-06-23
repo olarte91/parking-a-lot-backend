@@ -69,22 +69,6 @@ public class RegisterService {
             newRegister.setVehicle(vehicle);
         }
 
-
-        // if (parkingSpaceRepository.existsById(registerRequest.getParkingSpaceNumber())) {
-
-        //     ParkingSpace parkingSpace = parkingSpaceRepository
-        //             .findById(registerRequest.getParkingSpaceNumber())
-        //             .orElseThrow(() -> new RuntimeException("Parking space not found"));
-        //     newRegister.setParkingSpace(parkingSpace);
-        // } else {
-
-        //     ParkingSpace parkingSpace = new ParkingSpace();
-        //     parkingSpace.setStatus(ParkingSpotStatus.OCCUPIED);
-        //     parkingSpace.setType(ParkingType.MOTO);
-        //     parkingSpaceRepository.save(parkingSpace);
-        //     newRegister.setParkingSpace(parkingSpace);
-        // }
-
         if(parkingSpaceRepository.existsById(registerRequest.getParkingSpaceNumber())){
             ParkingSpace parkingSpace = parkingSpaceRepository.findById(registerRequest.getParkingSpaceNumber())
                 .orElseThrow(() -> new RuntimeException("Parking Space Not exists!"));
