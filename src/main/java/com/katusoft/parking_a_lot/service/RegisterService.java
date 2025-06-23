@@ -14,8 +14,6 @@ import com.katusoft.parking_a_lot.repository.ParkingSpaceRepository;
 import com.katusoft.parking_a_lot.repository.RegisterRepository;
 import com.katusoft.parking_a_lot.repository.VehTypeRepository;
 import com.katusoft.parking_a_lot.repository.VehicleRepository;
-import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
-import com.katusoft.parking_a_lot.utils.ParkingType;
 import com.katusoft.parking_a_lot.utils.RegisterStatus;
 
 import lombok.RequiredArgsConstructor;

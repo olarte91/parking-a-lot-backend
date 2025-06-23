@@ -23,9 +23,7 @@ import lombok.Data;
 @Data
 public class ParkingSpace {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")

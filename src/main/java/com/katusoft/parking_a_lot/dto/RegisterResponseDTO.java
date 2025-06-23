@@ -14,7 +14,7 @@ public class RegisterResponseDTO {
     private ParkingType vehicleType;
     private LocalDateTime dateTimeEntrance;
     private LocalDateTime dateTimeDeparture;
-    private Long parkingSpaceNumber;
+    private Integer parkingSpaceNumber;
     private Double totalAmount;
     
 
