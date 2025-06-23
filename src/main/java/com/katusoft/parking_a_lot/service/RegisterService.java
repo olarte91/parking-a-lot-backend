@@ -1,7 +1,6 @@
 package com.katusoft.parking_a_lot.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -30,9 +29,15 @@ public class RegisterService {
     private final ParkingSpaceRepository parkingSpaceRepository;
     private final VehTypeRepository vehTypeRepository;
 
+    /**
+     * Para devolver todos los elementos de la tabla register,
+     * debemos crear un DTO en este caso RegisterResponseDTO que devuelve 
+     * sólo los datos que necesitamos que nuestro cliente vea.
+     */
     public List<RegisterResponseDTO> getAll() {
+        //Primero creamos una lista de registros que nos devuelve los datos completos de los registros
         List<Register> registers = registerRepository.findAll();
-        return registers.stream()
+        return registers.stream() //Utilizamos stream para hacerle un mapeo a cada registro y mostrar solo lo necesario
         .map(register -> {
             RegisterResponseDTO dto = new RegisterResponseDTO();
             dto.setId(register.getId());
@@ -76,7 +81,7 @@ public class RegisterService {
             newRegister.setParkingSpace(parkingSpace);
         }
 
-        newRegister.setDateTimeEntrance(registerRequest.getDateTime());
+        newRegister.setDateTimeEntrance(registerRequest.getDateTimeEntrance());
         newRegister.setStatus(RegisterStatus.ACTIVE);
         registerRepository.save(newRegister);
         return newRegister;

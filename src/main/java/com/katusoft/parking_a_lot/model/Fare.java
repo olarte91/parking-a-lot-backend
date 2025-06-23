@@ -3,7 +3,6 @@ package com.katusoft.parking_a_lot.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.katusoft.parking_a_lot.utils.FareType;
 
 import jakarta.persistence.CascadeType;

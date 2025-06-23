@@ -9,6 +9,6 @@ public class RegisterRequestDTO {
 
     private String licensePlate;
     private Long parkingSpaceNumber;
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTimeEntrance;
     private Long vehicleType; 
 }
