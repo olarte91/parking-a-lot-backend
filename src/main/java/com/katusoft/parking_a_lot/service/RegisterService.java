@@ -54,10 +54,13 @@ public class RegisterService {
     public Register registerEntry(RegisterRequestDTO registerRequest) {
         Register newRegister = new Register();
 
+        //Verificamos la existencia del vehículo por número de placa
         if (vehicleRepository.existsByLicensePlate(registerRequest.getLicensePlate())) {
+            //Si el vehículo existe lo asignamos al nuevo registro esto con el fin de evitar duplicidades en la base de datos de vehículo
             Vehicle vehicle = vehicleRepository.findByLicensePlate(registerRequest.getLicensePlate());
             newRegister.setVehicle(vehicle);
         } else {
+            //Creamos una nueva entrada de vehículo en caso de que no exista
             Vehicle vehicle = new Vehicle();
             vehicle.setVehType(vehTypeRepository.findById(registerRequest.getVehicleType())
             .orElseThrow(() -> new RuntimeException("Vehicle type not found")));
@@ -66,21 +69,30 @@ public class RegisterService {
             newRegister.setVehicle(vehicle);
         }
 
-        if (parkingSpaceRepository.existsById(registerRequest.getParkingSpaceNumber())) {
 
-            ParkingSpace parkingSpace = parkingSpaceRepository
-                    .findById(registerRequest.getParkingSpaceNumber())
-                    .orElseThrow(() -> new RuntimeException("Parking space not found"));
-            newRegister.setParkingSpace(parkingSpace);
-        } else {
+        // if (parkingSpaceRepository.existsById(registerRequest.getParkingSpaceNumber())) {
 
-            ParkingSpace parkingSpace = new ParkingSpace();
-            parkingSpace.setStatus(ParkingSpotStatus.OCCUPIED);
-            parkingSpace.setType(ParkingType.MOTO);
-            parkingSpaceRepository.save(parkingSpace);
+        //     ParkingSpace parkingSpace = parkingSpaceRepository
+        //             .findById(registerRequest.getParkingSpaceNumber())
+        //             .orElseThrow(() -> new RuntimeException("Parking space not found"));
+        //     newRegister.setParkingSpace(parkingSpace);
+        // } else {
+
+        //     ParkingSpace parkingSpace = new ParkingSpace();
+        //     parkingSpace.setStatus(ParkingSpotStatus.OCCUPIED);
+        //     parkingSpace.setType(ParkingType.MOTO);
+        //     parkingSpaceRepository.save(parkingSpace);
+        //     newRegister.setParkingSpace(parkingSpace);
+        // }
+
+        if(parkingSpaceRepository.existsById(registerRequest.getParkingSpaceNumber())){
+            ParkingSpace parkingSpace = parkingSpaceRepository.findById(registerRequest.getParkingSpaceNumber())
+                .orElseThrow(() -> new RuntimeException("Parking Space Not exists!"));
+            
             newRegister.setParkingSpace(parkingSpace);
         }
 
+        
         newRegister.setDateTimeEntrance(registerRequest.getDateTimeEntrance());
         newRegister.setStatus(RegisterStatus.ACTIVE);
         registerRepository.save(newRegister);
