@@ -1,19 +1,26 @@
 package com.katusoft.parking_a_lot.service;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import com.katusoft.parking_a_lot.dto.RegisterRequestDTO;
 import com.katusoft.parking_a_lot.dto.RegisterResponseDTO;
+import com.katusoft.parking_a_lot.model.Fare;
 import com.katusoft.parking_a_lot.model.ParkingSpace;
 import com.katusoft.parking_a_lot.model.Register;
 import com.katusoft.parking_a_lot.model.Vehicle;
+import com.katusoft.parking_a_lot.repository.FareRepository;
 import com.katusoft.parking_a_lot.repository.ParkingSpaceRepository;
 import com.katusoft.parking_a_lot.repository.RegisterRepository;
 import com.katusoft.parking_a_lot.repository.VehTypeRepository;
 import com.katusoft.parking_a_lot.repository.VehicleRepository;
+import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
 import com.katusoft.parking_a_lot.utils.RegisterStatus;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +33,7 @@ public class RegisterService {
     private final VehicleRepository vehicleRepository;
     private final ParkingSpaceRepository parkingSpaceRepository;
     private final VehTypeRepository vehTypeRepository;
+    private final FareRepository fareRepository;
 
     /**
      * Para devolver todos los elementos de la tabla register,
@@ -75,9 +83,40 @@ public class RegisterService {
         }
 
         
-        newRegister.setDateTimeEntrance(registerRequest.getDateTimeEntrance());
+        newRegister.setDateTimeEntrance(LocalDateTime.now());
         newRegister.setStatus(RegisterStatus.ACTIVE);
         registerRepository.save(newRegister);
         return newRegister;
+    }
+
+    public Register registerExit(String licensePlate){
+        Register exitRegister = registerRepository.findByVehicleLicensePlateAndStatus(licensePlate,
+                RegisterStatus.ACTIVE);
+
+        if(exitRegister.getDateTimeDeparture() == null){
+            exitRegister.setDateTimeDeparture(LocalDateTime.now());
+        }
+
+        
+
+        //Calcular duración en horas
+        Duration totalTime = Duration.between(exitRegister.getDateTimeEntrance(), exitRegister.getDateTimeDeparture());
+        Long hours = totalTime.toHours();
+        Integer minutesPart = totalTime.toMinutesPart();
+        Double fare = exitRegister.getVehicle().getVehType().getFare().getValuePerHour();
+        exitRegister.setAmount(calculateTotalValue(hours, minutesPart, fare));
+
+        exitRegister.setStatus(RegisterStatus.INACTIVE);
+
+        registerRepository.save(exitRegister);
+
+
+        return exitRegister;
+
+    }
+
+    public Double calculateTotalValue(Long hours, Integer minutes, Double fare){
+        Long totalHours = minutes >= 1 ? hours + 1 : hours;
+        return fare * totalHours;
     }
 }

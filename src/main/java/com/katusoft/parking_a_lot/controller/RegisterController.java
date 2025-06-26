@@ -32,11 +32,17 @@ public class RegisterController {
     }
     
 
-    @PostMapping
+    @PostMapping("entrance")
     public ResponseEntity<Register> registerVehicle(@RequestBody RegisterRequestDTO registerRequest){
         Register savedRegister = registerService.registerEntry(registerRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRegister);
+    }
+
+    @PostMapping("departure")
+    public ResponseEntity<Register> registerVehicleDeparture(@RequestBody String licensePlate){
+        Register savedRegister = registerService.registerExit(licensePlate);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(savedRegister);
     }
 
 }

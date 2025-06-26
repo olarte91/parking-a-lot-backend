@@ -7,8 +7,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -19,8 +19,8 @@ public class Vehicle {
     @Id
     private String licensePlate;
 
-    @OneToOne
-    @JoinColumn(name = "veh_type_id")
+    @ManyToOne
+    @JoinColumn(name = "vehicles")
     private VehType vehType;
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
