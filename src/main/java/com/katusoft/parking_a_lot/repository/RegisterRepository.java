@@ -1,6 +1,5 @@
 package com.katusoft.parking_a_lot.repository;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
