@@ -4,5 +4,9 @@ Aplicación web para la gestión eficiente de parqueaderos, facilitando el contr
 ## Documentación
 [Docs](https://time-silica-9b2.notion.site/Documentaci-n-Parking-a-Lot-22008101c0d8805885c8efda5cc8c6a4)
 
+![Documentación Parking-a-log](/images/parkingalotdocs.png)
+
 ## Prototipo de diseño 
 [Prototipo](https://www.figma.com/proto/nrfnLkg3Cp1ngtWWXPT9ee/Untitled?node-id=3-6&p=f&t=PdCeS1h4q8G5LrOk-0&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A6)
+
+![Prototipo Parking-a-lot](images/parkingalotproto.png)
