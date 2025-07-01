@@ -10,5 +10,5 @@ public interface RegisterRepository extends JpaRepository<Register, Long>{
 
     public Register findByVehicleLicensePlate(String licensePlate);
     
-    public Register findByVehicleLicensePlateAndStatus(String licensePlate, RegisterStatus status);
+    public Register findByStatusAndVehicleLicensePlate(RegisterStatus status, String licensePlate);
 }

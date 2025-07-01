@@ -85,8 +85,8 @@ public class RegisterService {
     }
 
     public Register registerExit(String licensePlate){
-        Register exitRegister = registerRepository.findByVehicleLicensePlateAndStatus(licensePlate,
-                RegisterStatus.ACTIVE);
+        Register exitRegister = registerRepository.findByStatusAndVehicleLicensePlate(RegisterStatus.ACTIVE, licensePlate);
+                
 
         if(exitRegister.getDateTimeDeparture() == null){
             exitRegister.setDateTimeDeparture(LocalDateTime.now());
