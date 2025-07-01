@@ -48,11 +48,9 @@ public class RegisterController {
     }
 
     @PostMapping("departure")
-    public void registerVehicleDeparture(@RequestBody String licensePlate){
-        registerService.registerExit(licensePlate);
-        // Register savedRegister = registerService.registerExit(licensePlate);
-        // logger.info("Sale vehículo con placa: {} - tipo {}", licensePlate, registerRepository.findByVehicleLicensePlate(licensePlate).getVehicle().getVehType().getType());
-        // return ResponseEntity.status(HttpStatus.ACCEPTED).body(savedRegister);
+    public ResponseEntity<Register> registerVehicleDeparture(@RequestBody String licensePlate){
+        Register savedRegister = registerService.registerExit(licensePlate);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(savedRegister);
     }
 
 }

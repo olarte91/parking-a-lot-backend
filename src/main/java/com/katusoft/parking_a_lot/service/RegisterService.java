@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.katusoft.parking_a_lot.dto.RegisterRequestDTO;
@@ -28,6 +30,7 @@ public class RegisterService {
     private final VehicleRepository vehicleRepository;
     private final ParkingSpaceRepository parkingSpaceRepository;
     private final VehTypeRepository vehTypeRepository;
+    private static final Logger logger = LogManager.getLogger(RegisterService.class);
 
 
     /**
