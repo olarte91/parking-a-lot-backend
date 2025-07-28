@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.katusoft.parking_a_lot.model.ParkingSpace;
 import com.katusoft.parking_a_lot.repository.ParkingSpaceRepository;
-import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
+import com.katusoft.parking_a_lot.enums.ParkingSpotStatus;
 
 import lombok.RequiredArgsConstructor;
 

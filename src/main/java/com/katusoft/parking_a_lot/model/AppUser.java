@@ -2,7 +2,7 @@ package com.katusoft.parking_a_lot.model;
 
 import java.util.List;
 
-import com.katusoft.parking_a_lot.utils.Role;
+import com.katusoft.parking_a_lot.enums.Role;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

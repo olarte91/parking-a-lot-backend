@@ -2,7 +2,7 @@ package com.katusoft.parking_a_lot.model;
 
 import java.time.LocalDateTime;
 
-import com.katusoft.parking_a_lot.utils.RegisterStatus;
+import com.katusoft.parking_a_lot.enums.RegisterStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

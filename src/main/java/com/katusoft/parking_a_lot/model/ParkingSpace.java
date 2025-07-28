@@ -3,8 +3,8 @@ package com.katusoft.parking_a_lot.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
-import com.katusoft.parking_a_lot.utils.ParkingType;
+import com.katusoft.parking_a_lot.enums.ParkingSpotStatus;
+import com.katusoft.parking_a_lot.enums.ParkingType;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

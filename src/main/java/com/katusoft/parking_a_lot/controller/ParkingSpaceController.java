@@ -2,7 +2,7 @@ package com.katusoft.parking_a_lot.controller;
 
 import com.katusoft.parking_a_lot.model.ParkingSpace;
 import com.katusoft.parking_a_lot.service.ParkingSpaceService;
-import com.katusoft.parking_a_lot.utils.ParkingSpotStatus;
+import com.katusoft.parking_a_lot.enums.ParkingSpotStatus;
 
 import java.util.List;
 

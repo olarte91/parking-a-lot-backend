@@ -2,7 +2,7 @@ package com.katusoft.parking_a_lot.dto;
 
 import java.time.LocalDateTime;
 
-import com.katusoft.parking_a_lot.utils.ParkingType;
+import com.katusoft.parking_a_lot.enums.ParkingType;
 
 import lombok.Data;
 
