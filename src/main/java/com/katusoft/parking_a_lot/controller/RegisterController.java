@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
-@RequestMapping("/api/register")
+@RequestMapping("/register")
 @RequiredArgsConstructor
+@PreAuthorize("denyAll()")
 public class RegisterController {
     
     private static final Logger logger = LogManager.getLogger(RegisterController.class);
@@ -32,10 +34,12 @@ public class RegisterController {
     private final RegisterRepository registerRepository;
 
     @GetMapping()
+    @PreAuthorize("hasAnyAuthority('READ')")
     public ResponseEntity<List<RegisterResponseDTO>> getAll() {
         logger.info("Obteniendo Usuarios");
+        List<RegisterResponseDTO> registerResponseDTO = registerService.getAll();
         
-        return ResponseEntity.ok(registerService.getAll());
+        return ResponseEntity.ok(registerResponseDTO);
     }
     
 

@@ -42,14 +42,6 @@ public class Register {
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "entrance_user_id")
-    private AppUser userEntrance;
-
-    @ManyToOne
-    @JoinColumn(name = "departure_user_id")
-    private AppUser userDeparture;
-
-    @ManyToOne
     @JoinColumn(name = "space_id")
     private ParkingSpace parkingSpace;
 
